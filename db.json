@@ -1,0 +1,37 @@
+{
+    "produtos": [
+      {
+        "id": "1",
+        "nome": "Camiseta linho azul bebê",
+        "preco": "69.99",
+        "cor":"azul",
+        "categoria": "camiseta",
+        "imagem": "./images/produtos/produto1.jpeg"
+      },
+      {
+        "id": "2",
+        "nome": "Camiseta slim branca",
+        "preco": "69.99",
+        "categoria": "camiseta",
+        "cor":"branca",
+        "imagem": "./images/produtos/produto3.jpeg"
+      },
+      {
+        "id": "3",
+        "nome": "Calça alfaiataria azul royal",
+        "preco": "129.99",
+        "categoria": "calça",
+        "cor":"azul",
+        "imagem": "./images/produtos/produto2.jpeg"
+      },
+      {
+        "id": "4",
+        "nome": "Camiseta Polo verde militar",
+        "preco": "89.99",
+        "categoria": "camiseta",
+        "cor":"verde",
+        "imagem": "./images/produtos/produto5.jpeg"
+      }
+    ]
+  }
+  

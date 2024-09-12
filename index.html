@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITO</title>
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/Mito/images/header/complogo.png" type="image/x-icon">
+</head>
+<body>
+    <img src="./images/header/headerprod.jpg" style="display: none;">
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="./index.html"><img src="./images/header/complogo.png" alt="comp" width="225px"></a>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="index.html">Início</a></li>
+                        <li class="nav-item"><a href="#footer">Ajuda</a></li>
+                        <li class="nav-item"><a href="registrar.html">Registrar</a></li>
+                    </ul>
+                </nav>
+                <a href="carrinho.html"><img class="cart" src="./images/header/carrinho-de-compras.png" width="20px"></a>
+            </div>
+        </div>
+    </div>
+    <div class="headertext">
+        <div class="headerimg">
+            <h1>Uma autoimagem forte e positiva é a melhor preparação possível para o sucesso</h1>
+            <h3>Looks para o seu RÉVEILLON</h3>
+            <a href="#produtos" class="btn">Produtos</a>
+        </div>
+    </div>
+    <div class="offer">
+        <div class="small-container">
+            <div class="child">
+                <div class="halfchild">
+                    <img src="./images/promos/exclusive1.png" class="offer-img">
+                </div>
+                <div class="halfchild">
+                    <p>Sneaker</p>
+                    <h1>SAPATO MITO</h1>
+                    <small>
+                        Couro nobre 100% bovino.<br>
+                    </small>
+                    <a href="./detalhes.html" class="btn">Compre agora →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="filters">
+    <h2>Filtrar por:</h2>
+    <form id="filterForm">
+        <div class="filtro">
+            <label for="type">Tipo:</label>
+            <select id="type" name="type"> 
+                <option value="">Todos</option> 
+                <option value="camiseta">Camiseta</option>
+                <option value="calça">Calça</option>
+                <option value="suéter">Suéter</option>
+            </select>
+        </div>
+
+        <div class="filtro">
+            <label for="price">Preço:</label>
+            <select id="price" name="price">
+                <option value="">Todos</option> 
+                <option value="low-to-high">Menor para Maior</option>
+                <option value="high-to-low">Maior para Menor</option>
+            </select>
+        </div>
+
+        <div class="filtro">
+            <label for="color">Cor:</label>
+            <select id="color" name="color">
+                <option value="">Todas</option> 
+                <option value="azul">Azul</option>
+                <option value="branca">Branca</option>
+                <option value="verde">Verde</option>
+                <option value="preta">Preta</option>
+            </select>
+        </div>
+        
+        <button type="button" onclick="applyFilters()">Aplicar</button>
+    </form>
+</div>
+
+    <div class="small-container" id="produtos">
+        <div id="product-container" class="child"></div>
+    </div>
+
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="child">
+                <div class="footerChild1">
+                    <img src="images/header/complogo.png">
+                    <h4><a href="mailto:mitoformen@gmail.com">mitoformen@gmail.com</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        fetch('db.json')
+            .then(response => response.json())
+            .then(data => {
+                const produtos = data.produtos;
+                const container = document.getElementById('product-container');
+    
+                produtos.forEach(produto => {
+                    const produtoDiv = document.createElement('div');
+                    produtoDiv.classList.add('childprods');
+                    produtoDiv.setAttribute('data-type', produto.categoria);
+                    produtoDiv.setAttribute('data-color', produto.cor); 
+                    produtoDiv.setAttribute('data-price', produto.preco);
+    
+                    produtoDiv.innerHTML = `
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <h4>${produto.nome}</h4>
+                        <div class="rating"></div>
+                        <p>R$${produto.preco}</p>
+                        <button class = "adcarrinho" onclick='addToCart(${JSON.stringify(produto)})'>Adicionar ao Carrinho</button>
+                    `;
+    
+                    container.appendChild(produtoDiv);
+                });
+        })
+        .catch(error => console.error('Erro ao carregar os produtos:', error));
+    
+        function addToCart(produto) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(produto);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'carrinho.html';
+        }
+    
+        function applyFilters() {
+            const typeFilter = document.getElementById('type').value;
+            const priceFilter = document.getElementById('price').value;
+            const colorFilter = document.getElementById('color').value;
+    
+            const productContainer = document.getElementById('product-container');
+            const products = Array.from(productContainer.querySelectorAll('.childprods'));
+    
+            products.forEach(product => {
+                const typeMatch = !typeFilter || product.getAttribute('data-type') === typeFilter;
+                const colorMatch = !colorFilter || product.getAttribute('data-color') === colorFilter;
+                
+                if (typeMatch && colorMatch) {
+                    product.style.display = '';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+    
+            if (priceFilter) {
+                const sortedProducts = products.sort((a, b) => {
+                    const priceA = parseFloat(a.getAttribute('data-price'));
+                    const priceB = parseFloat(b.getAttribute('data-price'));
+                    return priceFilter === 'low-to-high' ? priceA - priceB : priceB - priceA;
+                });
+    
+                sortedProducts.forEach(product => productContainer.appendChild(product));
+            }
+        }
+    </script>
+    
+</body>
+</html>

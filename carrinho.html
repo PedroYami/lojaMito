@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Mito for Men</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            background-color: #f00;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        #produtos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card-produto {
+            background-color: #333;
+            border-radius: 8px;
+            width: calc(33.333% - 20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card-produto img {
+            width: 85%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-bottom: 2px solid #fff;
+        }
+
+        .card-produto h2 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .card-produto p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .card-produto button {
+            background-color: #f00;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .mensagem {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .mensagem.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mensagem.hide {
+            opacity: 0;
+            transform: translateX(-50%) translateY(100px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        button {
+            background-color: #f00;
+            border: none;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="./images/header/complogo.png" alt="Logo"></a>
+        <a href="carrinho.html" class="carrinho"><img src="./images/header/carrinho-de-compras.png" alt="Carrinho"></a>
+    </header>
+    <main>
+        <h1>Seu Carrinho</h1>
+        <table id="carrinho">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="total-container">
+            <h2>Total: R$ <span id="total">0.00</span></h2>
+        </div>
+        <button id="finalizar-compra">Finalizar Compra</button>
+    </main>
+    <script src="carrinho.js"></script>
+</body>
+</html>

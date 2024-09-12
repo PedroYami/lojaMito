@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MITO</title>
+        <link rel="stylesheet" href="./src/css/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="/Mito/images/header/complogo.png" type="image/x-icon">
+
+    </head>
+    <body>
+        <img src="./images/header/headerprod.jpg" style="display: none;">
+        <div class="header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="./index.html"><img src="./images/header/complogo.png" alt="comp" width="225px"></a>
+                    </div>
+                    <nav>
+                        <ul class="nav-menu">
+                            <li class="nav-item"><a href="index.html">Início</a></li>
+                            <li class="nav-item"><a href="#footer">Ajuda</a></li>
+                            <li class="nav-item"><a href="registrar.html">Registrar</a></li>
+                        </ul>
+                    </nav>
+                    <a href="carrinho.html"><img class="cart" src="./images/header/carrinho-de-compras.png" width="20px"></a>
+                    <div class="toggle"><i class="fa fa-bars"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="formPage">
+                <div class="btn" id="removeLog" onclick="login()">Já possui uma conta? </div>
+                <div class="btn" id="removeReg" onclick="register()">Novo usuário? </div>
+                <form class= "showForm" id="loginForm">
+                    <h3>Login</h3>
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn">Login</button>
+                    <a href="linkgoeshere">Esqueceu a senha?</a>
+                </form>
+                <form class="showForm" id="registerForm">
+                    <h3>Registrar</h3>
+                    <input type="text" placeholder="Username" required>
+                    <input type="email" placeholder="E-mail" required>
+                    <input type="password" placeholder="Password" required>
+                    <small>Lembrar senha*</small>
+                    <button type="submit" class="btn">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="child">
+                <div class="footerChild1">
+                    <img src="images/header/complogo.png">
+                    <h4><a href="mailto:mitoformen@gmail.com">mitoformen@gmail.com</a></h4>
+                </div>
+        </div>
+    </div>
+        <script src="./src/js/script.js"></script>
+    </body>
+</html>
